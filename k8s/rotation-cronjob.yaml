@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: rotation-apikey
 spec:
-  schedule: "*/5 * * * *" # Executa a cada 5 minutos
+  schedule: "*/60 * * * *" # Executa a cada 5 minutos
   jobTemplate:
     spec:
       template:
