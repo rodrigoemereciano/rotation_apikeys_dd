@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rotation-apikey
+spec:
+  schedule: "*/5 * * * *" # Executa a cada 5 minutos
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rotation-apikey
+            image: rotation_apikey:1.0.1
+            env:
+            - name: VAULT_ADDR
+              value: "http://vault:8200"
+            - name: API_KEY_NAME
+              value: "DD-proxy-teste"
+          restartPolicy: OnFailure
+

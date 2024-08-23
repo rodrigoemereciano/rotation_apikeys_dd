@@ -11,12 +11,13 @@ from datadog_api_client.v2.model.api_key_create_request import APIKeyCreateReque
 import requests
 import json
 
-api_key_name = "DD-proxy-teste"
+api_key_name = os.getenv('API_KEY_NAME')
+vault_url_defined = os.getenv('VAULT_URL')
 
 # Configurações do Datadog (URL do Proxy, API Key e Application Key)
 proxy_url = "https://api.us5.datadoghq.com/api/v2/api_keys"
-api_key = "<SUA API KEY>"
-app_key = "<SUA APP KEY>"
+api_key = "<apikey>"
+app_key = "<appkey>"
 
 # there is a valid "api_key" in the system
 
@@ -160,7 +161,7 @@ def criar_api_key_e_salvar(api_key_name):
         print(f"API Key gerada: {result}")
 
         # Define o caminho para salvar o arquivo JSON no diretório /tmp
-        file_path = os.path.join('/tmp', 'datadog_api_key_response.json')
+        file_path = os.path.join('/app', 'datadog_api_key_response.json')
 
         # Salva a resposta no arquivo JSON
         with open(file_path, 'w') as json_file:
@@ -177,8 +178,8 @@ def criar_api_key_e_salvar(api_key_name):
 # Função para enviar os dados para o Vault
 def enviar_para_vault(data_id, key):
     # Configurações do Vault
-    vault_url = "http://127.0.0.1:8200/v1/secret/data/datadog"
-    vault_token = "<SEU TOKEN>"
+    vault_url = vault_url_defined
+    vault_token = "root_token"
     
     # Dados a serem enviados para o Vault
     vault_data = {

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  vault:
+    image: vault:1.13.1
+    container_name: vault-dev
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: root_token
+      VAULT_DEV_LISTEN_ADDRESS: "0.0.0.0:8200"
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./vault/data:/vault/data
+    networks:
+      - my_network
+  rotation_apikey:
+    image: rotation_apikey:1.0.1
+    container_name: rotation-apikey-datadog
+    environment:
+      VAULT_ADDR: 'http://vault:8200'
+      API_KEY_NAME: 'DD-proxy-teste'
+      VAULT_URL: "http://vault:8200/v1/secret/data/datadog"
+    depends_on:
+      - vault
+    networks:
+      - my_network
+
+networks:
+  my_network:
