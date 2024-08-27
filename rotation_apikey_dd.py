@@ -11,7 +11,7 @@ from datadog_api_client.v2.model.api_key_create_request import APIKeyCreateReque
 import requests
 import json
 
-api_key_name = os.getenv('API_KEY_NAME')
+api_key_name = os.getenv('API_NAME')
 vault_url_defined = os.getenv('VAULT_URL')
 
 # Configurações do Datadog (URL do Proxy, API Key e Application Key)
