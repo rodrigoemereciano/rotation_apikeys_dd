@@ -32,7 +32,7 @@ spec:
             add: ["IPC_LOCK"]
       volumes:
       - name: vault-data
-        emptyDir: {} # Substituído hostPath por emptyDir
+        emptyDir: {}
 
 
 ---
