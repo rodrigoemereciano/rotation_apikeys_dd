@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: rotation-apikey
+spec:
+  schedule: "*/60 * * * *" # Executa a cada 60 minutos
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: rotation-apikey
+            image: rotation_apikey:1.0.5
+            env:
+            - name: VAULT_URL
+              value: "http://vault.default.svc.cluster.local:8200/v1/secret/data/datadog"
+            - name: API_NAME
+              value: "DD-proxy-teste"
+            - name: APP_NAME
+              value: "DD-proxy-teste"
+          restartPolicy: OnFailure
+
