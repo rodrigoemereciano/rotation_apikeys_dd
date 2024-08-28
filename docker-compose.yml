@@ -21,6 +21,7 @@ services:
     environment:
       VAULT_ADDR: 'http://vault:8200'
       API_KEY_NAME: 'DD-proxy-teste'
+      APP_KEY_NAME: 'DD-proxy-teste'
       VAULT_URL: "http://vault:8200/v1/secret/data/datadog"
     depends_on:
       - vault

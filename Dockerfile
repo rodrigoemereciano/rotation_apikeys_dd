@@ -19,11 +19,5 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Define a variável de ambiente para o Python não fazer buffering
 ENV PYTHONUNBUFFERED=1
 
-# Define URL VAULT
-ENV VAULT_URL=value1
-
-# Define NAME API KEY
-ENV API_NAME=value2
-
 # Comando para rodar o script Python
 CMD ["python", "rotation_apikey_dd.py"]

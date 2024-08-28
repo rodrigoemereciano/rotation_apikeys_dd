@@ -16,5 +16,7 @@ spec:
               value: "http://vault.default.svc.cluster.local:8200/v1/secret/data/datadog"
             - name: API_NAME
               value: "DD-proxy-teste"
+            - name: APP_NAME
+              value: "DD-proxy-teste"
           restartPolicy: OnFailure
 
